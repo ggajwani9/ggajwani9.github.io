@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Girish Gajwani — VP Technology, Barclays Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0f0e0c;
+      --ink-mid:   #3a3830;
+      --ink-soft:  #7a7670;
+      --rule:      #d8d4cc;
+      --paper:     #f7f5f1;
+      --cream:     #ede9e2;
+      --gold:      #b08d57;
+      --gold-pale: #d4b98a;
+      --white:     #fdfcfa;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(253,252,250,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 6rem 4rem 6rem 4rem;
+      background: var(--ink);
+      position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(176,141,87,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-name em { font-style: italic; color: var(--gold-pale); }
+    .hero-title {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      max-width: 26ch;
+      line-height: 1.6;
+    }
+    .hero-rule {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 2rem 0;
+    }
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem;
+      background: var(--paper);
+      gap: 3rem;
+    }
+    .hero-stat {
+      border-left: 1px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+    .hero-stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 7rem 4rem; }
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 3rem;
+    }
+    .section-heading em { font-style: italic; color: var(--ink-soft); }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+    }
+    .about-body p {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-focus { margin-top: 3rem; }
+    .focus-list {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      list-style: none; margin-top: 1rem;
+    }
+    .focus-list li {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .focus-list li::before { content: '→ '; color: var(--gold); }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    #experience .section-heading { color: var(--white); }
+    #experience .section-heading em { color: var(--gold-pale); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: rgba(255,255,255,0.1);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0 2.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -4px; top: 3rem;
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .timeline-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      padding-left: 1.5rem;
+      padding-top: 0.3rem;
+    }
+    .timeline-content {}
+    .timeline-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-bottom: 1rem;
+    }
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      max-width: 60ch;
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--paper);
+      border-top: 1px solid var(--rule);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .project-card {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: background 0.25s;
+    }
+    .project-card:hover { background: var(--cream); }
+    .project-index {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      line-height: 1.25;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.6rem;
+    }
+
+    /* ── INSIGHTS ── */
+    #insights {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+    }
+    .insights-list { display: flex; flex-direction: column; gap: 0; }
+    .insight-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 3rem;
+      align-items: baseline;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .insight-item:hover .insight-title { color: var(--gold); }
+    .insight-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+    .insight-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+    .insight-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ── SPEAKING ── */
+    #speaking {
+      background: var(--cream);
+      border-top: 1px solid var(--rule);
+    }
+    .speaking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .speaking-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 2rem 2rem 2rem 2rem;
+      position: relative;
+    }
+    .speaking-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+    }
+    .speaking-event {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .speaking-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .speaking-meta {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    #contact .section-heading { color: var(--white); }
+    .contact-intro {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0; }
+    .contact-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--gold); }
+    .contact-link-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    .contact-link-arrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      transition: transform 0.2s;
+    }
+    .contact-link:hover .contact-link-arrow { transform: translateX(6px); }
+    .contact-detail {
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .contact-detail-item {}
+    .contact-detail-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 2rem 4rem; min-height: 60vh; }
+      .hero-right { padding: 3rem 2rem; flex-direction: row; flex-wrap: wrap; gap: 2rem; }
+      section { padding: 5rem 2rem; }
+      #about { grid-template-columns: 1fr; gap: 2rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-date { padding-left: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .speaking-grid { grid-template-columns: 1fr; }
+      #contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+      .insight-item { grid-template-columns: 1fr; gap: 0.3rem; }
+      footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Girish Gajwani</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#speaking">Speaking</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">VP Technology · Barclays Capital · New York</p>
+      <h1 class="hero-name">Girish<br>Gajwani<br><em>Architect of</em><br>Digital Scale</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-title">Senior technology leader delivering cloud-native capital markets platforms across loan trading, securitization, and mortgage analytics.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat reveal">
+        <div class="hero-stat-number">20+</div>
+        <div class="hero-stat-label">Years in FinTech Leadership</div>
+      </div>
+      <div class="hero-stat reveal">
+        <div class="hero-stat-number">$10B+</div>
+        <div class="hero-stat-label">Syndicated Loan Trades Annually</div>
+      </div>
+      <div class="hero-stat reveal">
+        <div class="hero-stat-number">20+</div>
+        <div class="hero-stat-label">Engineers Led Globally</div>
+      </div>
+      <div class="hero-stat reveal">
+        <div class="hero-stat-number">AWS</div>
+        <div class="hero-stat-label">Cloud-Native · Hybrid Architecture</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div>
+      <p class="section-tag">About</p>
+      <h2 class="section-heading">Technology<br><em>as Strategy</em></h2>
+    </div>
+    <div class="about-body reveal">
+      <p>I am a senior technology leader with 20 years of experience delivering large-scale digital transformation across global financial institutions. At Barclays Capital, I architect and deliver mission-critical capital markets platforms spanning loan trading, securitization, and mortgage analytics.</p>
+      <p>My work sits at the convergence of cloud-native engineering, event-driven architecture, and AI-ready data platforms — translating complex business and regulatory requirements into resilient, scalable infrastructure. I have led global engineering organizations, influenced executive stakeholders and regulators, and driven enterprise modernization at scale.</p>
+      <p>A recognized thought leader and keynote speaker, I bring together deep technical expertise and executive perspective to build platforms — and engineering cultures — that outlast the initiatives that created them.</p>
+      <div class="about-focus">
+        <p class="section-tag">Areas of Expertise</p>
+        <ul class="focus-list">
+          <li>Cloud Transformation</li>
+          <li>Enterprise Architecture</li>
+          <li>Loan Trading & Securitization</li>
+          <li>AI-Ready Platforms</li>
+          <li>Event-Driven Systems</li>
+          <li>Microservices & AWS</li>
+          <li>Capital Markets</li>
+          <li>Engineering Leadership</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-tag">Career</p>
+    <h2 class="section-heading">Experience<br><em>&amp; Roles</em></h2>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2019 — Present</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Vice President, Technology – Development Lead</div>
+          <div class="timeline-org">Barclays Capital · New York, NY</div>
+          <p class="timeline-desc">Leading digital transformation across two flagship platforms: a global securitized products platform (consumer & asset-backed loans) and LoanConX, Barclays' wholesale loan trading & syndication platform. Architected event-driven data pipelines, Spring Boot microservices on AWS hybrid cloud, and scalable trade booking frameworks. Enabled processing of $10B+ in syndicated loan trades annually. Led global team of 20+ engineers; reduced operational processing time from hours to minutes through automation.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Prior Role</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Associate Director</div>
+          <div class="timeline-org">UBS</div>
+          <p class="timeline-desc">Modernized API security and entitlement architecture for loan trading platforms. Improved delivery agility and platform security posture across global capital markets infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Prior Role</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Technology Lead</div>
+          <div class="timeline-org">JP Morgan Chase</div>
+          <p class="timeline-desc">Designed Wealth Management account opening platform and event-driven processing systems. Delivered advanced analytics proofs-of-concept using graph databases.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Earlier</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Technology Leadership Roles</div>
+          <div class="timeline-org">Barclays (Capgemini) · JPMorgan (Cognizant) · Lehman Brothers/Nomura · Oracle Financial Services</div>
+          <p class="timeline-desc">Progressive leadership across architecture, engineering, and delivery functions within capital markets, wealth management, and retail banking contexts across global institutions.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-tag">Selected Work</p>
+    <h2 class="section-heading">Featured<br><em>Initiatives</em></h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-index">01 / Initiative</div>
+        <h3 class="project-title">Securitized Products Platform</h3>
+        <p class="project-desc">Led digital transformation of a global platform supporting consumer & asset-backed loan pooling, servicing, and lifecycle management. Architected event-driven pipelines enabling real-time analytics and regulatory transparency across legal entities.</p>
+        <div class="project-tags">
+          <span class="project-tag">AWS Hybrid Cloud</span>
+          <span class="project-tag">Spring Boot</span>
+          <span class="project-tag">Securitization</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-index">02 / Initiative</div>
+        <h3 class="project-title">LoanConX — Wholesale Lending</h3>
+        <p class="project-desc">Directed modernization of Barclays' global loan trading & syndication platform. Integrated ClearPar, ACBS, and LoanIQ for straight-through allocation and settlement, enabling $10B+ in annual syndicated loan trades.</p>
+        <div class="project-tags">
+          <span class="project-tag">Loan Trading</span>
+          <span class="project-tag">Syndication</span>
+          <span class="project-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-index">03 / Initiative</div>
+        <h3 class="project-title">Cloud Migration to AWS</h3>
+        <p class="project-desc">Migrated legacy capital markets stack to Spring Boot microservices on AWS hybrid cloud, dramatically improving resiliency and scalability. Led a global team of 20+ engineers through full CI/CD and cloud-native transformation.</p>
+        <div class="project-tags">
+          <span class="project-tag">Microservices</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">Cloud-Native</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-index">04 / Initiative</div>
+        <h3 class="project-title">AI-Ready Data Platform</h3>
+        <p class="project-desc">Enabled AI readiness and advanced analytics capabilities across securitized products, supporting risk insight and regulatory accuracy. Built Kafka-based event-driven data pipelines to power real-time decisioning.</p>
+        <div class="project-tags">
+          <span class="project-tag">Kafka</span>
+          <span class="project-tag">AI Readiness</span>
+          <span class="project-tag">Data Platforms</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-index">05 / Initiative</div>
+        <h3 class="project-title">API Security & Entitlement Architecture</h3>
+        <p class="project-desc">At UBS, modernized API security and entitlement architecture for loan trading platforms, improving delivery agility and platform security posture across global capital markets infrastructure.</p>
+        <div class="project-tags">
+          <span class="project-tag">API Security</span>
+          <span class="project-tag">Entitlements</span>
+          <span class="project-tag">UBS</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-index">06 / Initiative</div>
+        <h3 class="project-title">Wealth Management Platform</h3>
+        <p class="project-desc">At JP Morgan Chase, designed the Wealth Management account opening platform and event-driven processing systems. Delivered advanced analytics proofs-of-concept using graph databases.</p>
+        <div class="project-tags">
+          <span class="project-tag">Wealth Management</span>
+          <span class="project-tag">Graph Databases</span>
+          <span class="project-tag">JPMorgan</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section id="insights">
+    <p class="section-tag">Perspectives</p>
+    <h2 class="section-heading">Insights<br><em>&amp; Articles</em></h2>
+    <div class="insights-list">
+      <div class="insight-item reveal">
+        <span class="insight-date">2026</span>
+        <span class="insight-title">Generative AI Ethics and Responsible Innovation in Financial Services</span>
+        <span class="insight-category">AI · CDO Magazine</span>
+      </div>
+      <div class="insight-item reveal">
+        <span class="insight-date">2025</span>
+        <span class="insight-title">Microservices Architecture for Capital Markets Platforms</span>
+        <span class="insight-category">Published Article</span>
+      </div>
+      <div class="insight-item reveal">
+        <span class="insight-date">2025</span>
+        <span class="insight-title">AI-Driven Financial Systems: Patterns for Production Readiness</span>
+        <span class="insight-category">Thought Leadership</span>
+      </div>
+      <div class="insight-item reveal">
+        <span class="insight-date">2024</span>
+        <span class="insight-title">Cloud Architecture for Loan Trading and Securitization at Scale</span>
+        <span class="insight-category">Engineering</span>
+      </div>
+      <div class="insight-item reveal">
+        <span class="insight-date">2024</span>
+        <span class="insight-title">Building Engineering Cultures That Deliver at Global Scale</span>
+        <span class="insight-category">Leadership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKING -->
+  <section id="speaking">
+    <p class="section-tag">Engagements</p>
+    <h2 class="section-heading">Speaking<br><em>&amp; Media</em></h2>
+    <div class="speaking-grid">
+      <div class="speaking-card reveal">
+        <div class="speaking-event">Keynote · NY Banking Summit</div>
+        <h3 class="speaking-title">Cloud-Native Transformation in Capital Markets</h3>
+        <p class="speaking-meta">New York, USA</p>
+      </div>
+      <div class="speaking-card reveal">
+        <div class="speaking-event">Keynote · Tech in Motion</div>
+        <h3 class="speaking-title">Engineering at Scale in Global Financial Institutions</h3>
+        <p class="speaking-meta">New York, USA</p>
+      </div>
+      <div class="speaking-card reveal">
+        <div class="speaking-event">Panel · CDO Magazine</div>
+        <h3 class="speaking-title">Generative AI Ethics and Responsible Innovation</h3>
+        <p class="speaking-meta">Published Panel Discussion</p>
+      </div>
+      <div class="speaking-card reveal">
+        <div class="speaking-event">Session Chair · IEEE International Conference</div>
+        <h3 class="speaking-title">AI-Driven Systems in Financial Services</h3>
+        <p class="speaking-meta">International Conference</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials" style="background: var(--white); border-top: 1px solid var(--rule);">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;">
+      <div>
+        <p class="section-tag">Board & Advisory</p>
+        <h2 class="section-heading">Leadership<br><em>Beyond the Role</em></h2>
+        <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem;">
+          <div class="speaking-card reveal" style="padding: 1.5rem 1.5rem 1.5rem 1.8rem;">
+            <div class="speaking-event">Board Member</div>
+            <h3 class="speaking-title" style="font-size: 1.05rem;">First & Gold Foundation</h3>
+            <p class="speaking-meta">Youth athlete development & leadership</p>
+          </div>
+          <div class="speaking-card reveal" style="padding: 1.5rem 1.5rem 1.5rem 1.8rem;">
+            <div class="speaking-event">Advisory Council Member</div>
+            <h3 class="speaking-title" style="font-size: 1.05rem;">Harvard Business Review</h3>
+            <p class="speaking-meta">HBR Advisory Council</p>
+          </div>
+          <div class="speaking-card reveal" style="padding: 1.5rem 1.5rem 1.5rem 1.8rem;">
+            <div class="speaking-event">Ambassador & Advisor</div>
+            <h3 class="speaking-title" style="font-size: 1.05rem;">Gartner Peer Community · Products That Count</h3>
+            <p class="speaking-meta">Peer Ambassador & Advisory Council</p>
+          </div>
+          <div class="speaking-card reveal" style="padding: 1.5rem 1.5rem 1.5rem 1.8rem;">
+            <div class="speaking-event">Reviewer & Session Chair</div>
+            <h3 class="speaking-title" style="font-size: 1.05rem;">IEEE International Conferences</h3>
+            <p class="speaking-meta">Technical reviewer & conference chair</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-tag">Education & Credentials</p>
+        <h2 class="section-heading">Qualifications<br><em>&amp; Recognition</em></h2>
+        <ul class="focus-list reveal" style="margin-top: 1rem;">
+          <li>Bachelor of Engineering</li>
+          <li>AWS Certified Solutions Architect</li>
+          <li>PMP — Project Management Professional</li>
+          <li>Stanford Machine Learning Certificate</li>
+          <li>Barclays Trailblazer Award Finalist</li>
+          <li>Published Author — Microservices & AI</li>
+          <li>IEEE Reviewer</li>
+          <li>Keynote Speaker — Multiple Conferences</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div>
+      <p class="section-tag">Get in Touch</p>
+      <h2 class="section-heading">Let's<br><em>Connect</em></h2>
+      <p class="contact-intro">Open to conversations around technology strategy, financial services transformation, advisory roles, and speaking engagements.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://www.linkedin.com/in/ggajwani/" target="_blank">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="contact-detail reveal">
+      <div class="contact-detail-item">
+        <div class="contact-detail-label">Current Role</div>
+        <div class="contact-detail-value">VP Technology, Development Lead — Barclays Capital</div>
+      </div>
+      <div class="contact-detail-item">
+        <div class="contact-detail-label">Location</div>
+        <div class="contact-detail-value">New York, USA</div>
+      </div>
+      <div class="contact-detail-item">
+        <div class="contact-detail-label">Focus</div>
+        <div class="contact-detail-value">Cloud · Capital Markets · AI Platforms · Loan Trading · Engineering Leadership</div>
+      </div>
+      <div class="contact-detail-item">
+        <div class="contact-detail-label">Open to</div>
+        <div class="contact-detail-value">Advisory · Speaking · Board Roles · Strategic Partnerships</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Girish Gajwani — All rights reserved</span>
+    <span class="footer-copy">Built with precision · Hosted on GitHub Pages</span>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
